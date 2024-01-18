@@ -112,6 +112,7 @@ jobs:
           python -c "import idaes_ui; print(idaes_ui)"
       #cypress starts here
       - name: Check out files needed to run cypress tests
+        if: matrix.install-variant != 'dev'
         uses: actions/checkout@v4
         with:
           sparse-checkout-cone-mode: false
