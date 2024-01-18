@@ -101,6 +101,15 @@ jobs:
         with:
           variant: ${{ matrix.install-variant }}
           python-version: ${{ matrix.python-version }}
+      - name: Check Python installation after install action
+        run: |
+          echo "Running check for idaes_ui module"
+          which python
+          python --version
+          pip list
+          python -c "import os, sys; print(os.getcwd()); print(sys.path)"
+          python -c "from importlib.metadata import files; [print(f.locate()) for f in files('idaes-ui')]"
+          python -c "import idaes_ui; print(idaes_ui)"
       #cypress starts here
       - name: Check out files needed to run cypress tests
         uses: actions/checkout@v4
@@ -111,7 +120,15 @@ jobs:
             package.json
             package-lock.json
             cypress.config.js
-            
+      - name: Check Python installation after checkout
+        run: |
+          echo "Running check for idaes_ui module"
+          which python
+          python --version
+          pip list
+          python -c "import os, sys; print(os.getcwd()); print(sys.path)"
+          python -c "from importlib.metadata import files; [print(f.locate()) for f in files('idaes-ui')]"
+          python -c "import idaes_ui; print(idaes_ui)"
       - name: Install node packages
         run: npm install
 
