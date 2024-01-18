@@ -118,10 +118,10 @@ jobs:
       - name: Start UI
         run: |
           echo "Running check for idaes_ui module"
-          python -c "import idaes_ui; print(idaes_ui)"
           which python
           python --version
           pip list
+          python -c "import idaes_ui; print(idaes_ui)"
           python -m idaes_ui.fv.example & 
           sleep 30
 
