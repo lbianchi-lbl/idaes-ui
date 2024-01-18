@@ -121,6 +121,8 @@ jobs:
           which python
           python --version
           pip list
+          python -c "import os, sys; print(os.getcwd()); print(sys.path)"
+          python -c "from importlib.metadata import files; [print(f.locate()) for f in files('idaes-ui')]"
           python -c "import idaes_ui; print(idaes_ui)"
           python -m idaes_ui.fv.example & 
           sleep 30
